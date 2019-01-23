@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>idx|simulation</title>
+</head>
+<body>
+    <form onsubmit="return false">
+    <fieldset>
+    <legend>Welcome</legend>
+        <div align="center">
+            <p>Set the following parameters of country road simulation:</p>
+        </div>
+        <table width="100%">
+            <tr>
+                <td width="50%" align="center">simulation time (seconds)</td>
+                <td width="50%" align="center"><input id="simulation_time" placeholder="value" maxlength="4" pattern="^[0-9]+$"></input></td>
+            </tr>
+            <tr>
+                <td width="50%" align="center">pedestrian traffic intensity (pedestrians per minute)</td>
+                <td width="50%" align="center"><input id="pedestrian_traffic_intensity" placeholder="value" maxlength="3" pattern="^[0-9]+$"></input></td>
+            </tr>
+            <tr>
+                <td width="50%" align="center">car traffic intensity (cars per minute)</td>
+                <td width="50%" align="center"><input id="car_traffic_intensity" placeholder="value" maxlength="3" pattern="^[0-9]+$"></input></td>
+            </tr>
+            <tr>
+                <td width="50%" align="center">switching time of traffic lights (seconds)</td>
+                <td width="50%" align="center"><input id="switching_time" placeholder="value" maxlength="4" pattern="^[0-9]+$"></input></td>
+            </tr>
+        </table>
+            <div align="center">
+                <button type="submit" onclick="set_parameters()">OK</button>
+            </div>
+    </fieldset>
+    </form>
+    <script src="simulation.js"></script>
+    <script>
+        var TIME;
+        var PTI;
+        var CTI;
+        var ST;
+        function set_parameters(){
+            TIME=document.getElementById("simulation_time").value;
+            PTI=document.getElementById("pedestrian_traffic_intensity").value;
+            CTI=document.getElementById("car_traffic_intensity").value;
+            ST=document.getElementById("switching_time").value;
+            if ((TIME!=="")&&(PTI!=="")&&(CTI!=="")&&(ST!=="")){
+                TIME = Number.parseInt(TIME);
+                PTI = Number.parseInt(PTI);
+                CTI = Number.parseInt(CTI);
+                ST = Number.parseInt(ST);
+                init();
+            }
+            return false;
+        };
+    </script>
+    <canvas id="canvas"></canvas>
+</body>
+</html>
